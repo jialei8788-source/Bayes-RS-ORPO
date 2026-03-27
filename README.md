@@ -34,11 +34,14 @@ A memory-efficient LLM alignment pipeline combining Bayesian uncertainty-aware R
 利用独立 7B 奖励模型对测试集进行端到端打分。经 **KS检验** 证明，对齐前后模型的 Reward 期望发生了具有统计显著性 ($p=0.022 < 0.05$) 的右移。
 
 *(在此处插入你的 reward_drift_analysis.png 图片)*
+![reward分布核密度图](./assets/reward_drift_analysis.png) 
 > **结论**：策略模型成功跳出了局部最优解，整体概率分布向高偏好区域发生了实质性转移。
 
 ### 3. 长度偏置监控 (Length Bias Check)
 相较于基线模型，对齐后的模型平均生成长度变化控制在 **5%** 以内，有效克服了传统对齐算法中常见的“话痨作弊 (Length Hacking)”现象。
 
+### 4. 大模型评价 (LLM-judge)
+使用更强参数更多的大模型 (这里调用Qwen-Plus API)对比偏好对齐前后的得分，100生成中，Bayes-OR-ORPO 胜率为11%, baseline 胜率为7% 平局率为22%。 
 ## 🛠️ 管线架构与运行指南 (Pipeline & Usage)
 
 本项目包含从数据挖掘到最终评估的 4 个完整阶段：

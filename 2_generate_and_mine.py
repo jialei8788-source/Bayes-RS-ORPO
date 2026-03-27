@@ -72,7 +72,7 @@ def mine_hard_negatives(generations, means, variances, alpha=0.05, lambda_1=1.0)
     return generations[winner_idx], generations[loser_idx]
 
 def main():
-    dataset_cache_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/hf_datasets_cache"
+    dataset_cache_dir = "./data/hf_datasets_cache"
     
     # 【修改点1】：明确分离策略模型和RM模型的ID
     policy_model_id = "Qwen/Qwen2.5-0.5B-Instruct"
@@ -104,7 +104,7 @@ def main():
     base_rm.config.pad_token_id = rm_tokenizer.pad_token_id
     
     # 加载带有 LoRA 权重的 RM (此时 7B 的 LoRA 权重将完美适配 7B 的 base_rm)
-    rm_model = PeftModel.from_pretrained(base_rm, "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/rm_model_final")
+    rm_model = PeftModel.from_pretrained(base_rm, "./outputs/checkpoints/rm_model_final")
 
     print(f">>> 3. 从 Hugging Face 加载 UltraFeedback Prompt 题库...")
     prompt_dataset = load_dataset(
@@ -163,8 +163,8 @@ def main():
             })
 
     print(f"\n>>> 5. 筛选完毕！从 {len(prompts)} 个 Prompt 中保留了 {len(final_dataset)} 条有效偏好对。")
-    print("正在保存至 /home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/rs_mined_dataset.json ...")
-    with open("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/rs_mined_dataset.json", "w", encoding="utf-8") as f:
+    print("正在保存至 ./data/rs_mined_dataset.json ...")
+    with open("./data/rs_mined_dataset.json", "w", encoding="utf-8") as f:
         json.dump(final_dataset, f, indent=2, ensure_ascii=False)
         
     print("拒绝采样阶段完成！可以准备进行最终的 ORPO 微调了。")

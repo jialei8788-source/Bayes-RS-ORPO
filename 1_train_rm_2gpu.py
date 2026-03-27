@@ -25,8 +25,8 @@ def main():
 
     print(f"[Rank {local_rank}] current_device = cuda:{current_device}")
 
-    dataset_cache_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/hf_datasets_cache"
-    output_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints"
+    dataset_cache_dir = "./data/hf_datasets_cache"
+    output_dir = "./outputs/checkpoints"
     os.makedirs(dataset_cache_dir, exist_ok=True)
     os.makedirs(output_dir, exist_ok=True)
 

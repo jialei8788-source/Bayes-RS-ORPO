@@ -17,11 +17,11 @@ from peft import PeftModel
 # ==========================================
 # 请替换为你新生成的 API Key
 client = OpenAI(
-    api_key="sk-0d6150a40ffa456794246f33e770125d", #sk-0d6150a40ffa456794246f33e770125d
-    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+    api_key="YOUR API KEY", 
+    base_url="YOUR URL"
 )
 
-# 强烈建议使用通用能力更强的 qwen-plus 或 qwen-max 作为裁判
+# 强烈建议使用通用能力更强的 qwen-plus 或 qwen-max/GPT-4o 作为裁判
 JUDGE_MODEL_ID = "qwen-plus" #qwen-max  你也可以改回 "qwen2.5-math-7b-instruct"
 
 JUDGE_SYSTEM_PROMPT = """你是一个公正的大语言模型评判专家。你需要评估两个AI助手对同一个用户指令的回答。
@@ -154,7 +154,7 @@ def main():
         print("-" * 50)
         
         # 保存裁判的详细分析
-        log_path = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/results/llm_judge_detailed_report.json"
+        log_path = "./outputs/results/llm_judge_detailed_report.json"
         with open(log_path, "w", encoding="utf-8") as f:
             json.dump(detailed_logs, f, ensure_ascii=False, indent=2)
         print(f"📝 裁判详细分析日志已保存至: {log_path} ")

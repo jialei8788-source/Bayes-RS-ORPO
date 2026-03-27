@@ -74,6 +74,7 @@ lm_eval --model hf --model_args pretrained=Qwen/Qwen2.5-0.5B-Instruct,peft=./out
 ```
 
 ##🤝 致谢 (Acknowledgments)
+
 感谢 HuggingFace TRL 团队提供的 ORPO 与 RM 训练框架。
 
 感谢 EleutherAI 提供的 lm-evaluation-harness 客观评测工具。

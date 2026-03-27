@@ -19,12 +19,12 @@ def main():
     # 1. 路径与配置 (请确保与你的实际路径一致)
     # ==========================================
     policy_base_id = "Qwen/Qwen2.5-0.5B-Instruct"
-    orpo_lora_path = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/final_policy_model_weights"
+    orpo_lora_path = "./outputs/checkpoints/final_policy_model_weights"
     
     rm_base_id = "Qwen/Qwen2.5-7B-Instruct"
-    rm_lora_path = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/rm_model_final"
+    rm_lora_path = "./outputs/checkpoints/rm_model_final"
     
-    dataset_cache_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/hf_datasets_cache"
+    dataset_cache_dir = "./data/hf_datasets_cache"
     num_eval_samples = 200 # 评估 200 条数据画分布图足够了
 
     # ==========================================
@@ -133,9 +133,9 @@ def main():
     plt.grid(axis='y', linestyle='--', alpha=0.7)
     plt.tight_layout()
     
-    save_path = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/results/reward_drift_analysis.png"
+    save_path = "./outputs/results/reward_drift_analysis.png"
     plt.savefig(save_path)
-    print(f"✅ 完美！分布漂移图已保存为: {save_path}")
+    print(f"分布漂移图已保存为: {save_path}")
 
 if __name__ == "__main__":
     main()

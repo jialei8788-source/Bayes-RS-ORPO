@@ -33,7 +33,7 @@ A memory-efficient LLM alignment pipeline combining Bayesian uncertainty-aware R
 ### 2. 偏好重塑分布漂移 (Reward Distribution Drift)
 利用独立 7B 奖励模型对测试集进行端到端打分。经 **KS检验** 证明，对齐前后模型的 Reward 期望发生了具有统计显著性 ($p=0.022 < 0.05$) 的右移。
 
-![reward分布核密度图](./assets/reward_drift_analysis.png){width=50%} 
+<img src="./assets/reward_drift_analysis.png" width="50%" alt="reward分布核密度图">
 > **结论**：策略模型成功跳出了局部最优解，整体概率分布向高偏好区域发生了实质性转移。
 
 ### 3. 长度偏置监控 (Length Bias Check)

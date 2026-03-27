@@ -11,9 +11,9 @@ from trl import RewardTrainer, RewardConfig
 
 
 def main():
-    dataset_cache_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/hf_datasets_cache"
+    dataset_cache_dir = "./data/hf_datasets_cache"
     os.makedirs(dataset_cache_dir, exist_ok=True)
-    os.makedirs("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints", exist_ok=True)
+    os.makedirs("./outputs/checkpoints", exist_ok=True)
     #EssentialAI/rnj-1-instruct
     #Qwen/Qwen2.5-7B-Instruct
     #Qwen/Qwen2.5-0.5B
@@ -92,7 +92,7 @@ def main():
 
     print(">>> 5. 启动 RM 训练...")
     reward_config = RewardConfig(
-        output_dir="/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/rm_tmp",
+        output_dir="./outputs/checkpoints/rm_tmp",
         per_device_train_batch_size=2,
         gradient_accumulation_steps=8, # 根据您的显存大小调整
         learning_rate=1e-5,
@@ -113,8 +113,8 @@ def main():
 
     trainer.train()
     print(">>> 6. 保存 RM 权重...")
-    trainer.model.save_pretrained("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/rm_model_final")
-    tokenizer.save_pretrained("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/rm_model_final")
+    trainer.model.save_pretrained("./outputs/checkpoints/rm_model_final")
+    tokenizer.save_pretrained("./outputs/checkpoints/rm_model_final")
     print("RM 训练完成！")
 
 if __name__ == "__main__":

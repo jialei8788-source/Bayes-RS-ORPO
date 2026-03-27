@@ -15,8 +15,8 @@ def main():
     # 1. 路径与配置
     # ==========================================
     policy_base_id = "Qwen/Qwen2.5-0.5B-Instruct"
-    orpo_lora_path = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/final_policy_model_weights"
-    dataset_cache_dir = "/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/hf_datasets_cache"
+    orpo_lora_path = "./outputs/checkpoints/final_policy_model_weights"
+    dataset_cache_dir = "./data/hf_datasets_cache"
     
     num_eval_samples = 200 # 评估 200 条以获取统计学上稳定的平均值
 
@@ -111,13 +111,13 @@ def main():
     else:
         print(f"长度变化率: 减少 {abs(length_change_ratio):.2f}% 🔻")
 
-    print("\n💡 面试官视角点评：")
+    print("\n 结果：")
     if abs(length_change_ratio) <= 5:
         print("长度变化极小 (<=5%)。在保持基座能力 (MMLU/GSM8K) 的同时完成了偏好对齐，且完美避开了大模型常见的 'Length Hacking ' 问题")
     elif 5 < length_change_ratio <= 15:
         print("长度略微增加，属于 ORPO 优化过程中的正常现象（模型学会了更详尽地解释步骤）。")
     else:
-        print("长度变化较大 (>15%)。胜率的提升可能部分来源于 '模型变得更啰嗦'，而不是逻辑变得更好。这正是为什么我们需要前面跑的客观指标 (MMLU/GSM8K)")
+        print("长度变化较大 (>15%)。胜率的提升可能部分来源于 '模型变得更啰嗦'，而不是逻辑变得更好")
 
 if __name__ == "__main__":
     main()

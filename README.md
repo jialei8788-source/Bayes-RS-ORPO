@@ -15,7 +15,7 @@ A memory-efficient LLM alignment pipeline combining Bayesian uncertainty-aware R
 * **🧠 统计学困难负样本挖掘 (Statistical Hard-Negative Mining)**：
     * **缓解分布偏移**：抛弃静态开源偏好数据集，采用策略模型进行 **On-Policy 拒绝采样**。
     * **贝叶斯不确定性 (Epistemic Uncertainty)**：在 Reward Model 打分时开启 MC Dropout，获取后验奖励分布的期望 $\mu$ 和方差 $\sigma^2$。
-    * **假设检验 (Hypothesis Testing)**：利用置信下界 (LCB) 锁定候选优胜者，并构建双样本 Z 检验 $$Z = \frac{\mu_w - \mu_l}{\sqrt{\sigma_w^2 + \sigma_l^2}}$$ 严格过滤噪声，仅保留具有统计显著性 ($p < \alpha$) 的高质量配对数据。
+    * **假设检验 (Hypothesis Testing)**：利用置信下界 (LCB) $$w = \text{argmax}_i (\mu_i - \lambda \sigma_i)$$ 锁定候选优胜者，并构建双样本 Z 检验 $$Z = \frac{\mu_w - \mu_l}{\sqrt{\sigma_w^2 + \sigma_l^2}}$$ 严格过滤噪声，仅保留具有统计显著性 ($p < \alpha$) 的高质量配对数据。
 * **📊 严密的评测闭环 (Rigorous Evaluation)**：内置自动化评估脚本，包含主观胜率 (LLM-as-a-Judge)、长度偏置监控、基于 KS 检验 (Kolmogorov-Smirnov test) 的 Reward 漂移分析，以及基于 `lm-evaluation-harness` 的客观能力追踪。
 
 ## 📈 实验结果 (Evaluation Results)

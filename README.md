@@ -47,3 +47,35 @@ A memory-efficient LLM alignment pipeline combining Bayesian uncertainty-aware R
 使用大规模基座 (如 Qwen2.5-7B) 训练序列分类器，作为后续采样的裁判。
 ```bash
 python 1_train_rm.py
+```
+### Phase 2: 贝叶斯驱动的偏好数据对挖掘 (Generate & Mine)
+策略模型多路采样，RM 开启 Dropout 获取分布，并执行 Z-test 过滤。
+```bash
+python 2_generate_and_mine.py
+```
+### Phase 3: 离线几率比偏好优化 (ORPO Alignment with off-policy)
+使用挖掘出的高质量 rs_mined_dataset.json，对 0.5B 基座进行高效 ORPO 微调对齐。
+```bash
+python 3_train_orpo.py
+```
+### Phase 4: 全维度自动评估 (Evaluation)
+```bash
+# 1. 检验 Reward 分布漂移与 KS-Test
+python evaluate/4_eval_reward_drift.py
+
+# 2. 检验长度偏置 (Length Hacking)
+python evaluate/5_eval_length_bias.py
+
+# 3. GPT-4o / Qwen-Plus 主观胜率裁判
+python evaluate/6_llm_as_a_judge.py
+
+# 4. 客观 Benchmark (MMLU / GSM8K)
+lm_eval --model hf --model_args pretrained=Qwen/Qwen2.5-0.5B-Instruct,peft=./outputs/checkpoints/final_policy_model_weights,dtype=bfloat16 --tasks mmlu,gsm8k --num_fewshot 5 --batch_size auto
+```
+
+##🤝 致谢 (Acknowledgments)
+感谢 HuggingFace TRL 团队提供的 ORPO 与 RM 训练框架。
+
+感谢 EleutherAI 提供的 lm-evaluation-harness 客观评测工具。
+
+感谢 UltraFeedback 提供的开源偏好数据作为起点。

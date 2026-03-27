@@ -39,7 +39,7 @@ def main():
     policy_model = get_peft_model(policy_model, peft_config)
 
     print(">>> 3. 加载第二步挖掘的高质量偏好数据集...")
-    with open("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/data/rs_mined_dataset.json", "r", encoding="utf-8") as f:
+    with open("./data/rs_mined_dataset.json", "r", encoding="utf-8") as f:
         data = json.load(f)
     
     # 转换为 Hugging Face Dataset
@@ -65,7 +65,7 @@ def main():
 
     print(">>> 4. 启动 ORPO 训练...")
     orpo_config = ORPOConfig(
-        output_dir="/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/final_policy_model",
+        output_dir="./outputs/checkpoints/final_policy_model",
         learning_rate=1e-5, #5e-6
         beta=0.4, # ORPO 惩罚权重 (对应几率比损失的 lambda)
         per_device_train_batch_size=2,
@@ -89,9 +89,9 @@ def main():
 
     trainer.train()
     print(">>> 5. 保存最终对齐的模型权重...")
-    trainer.model.save_pretrained("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/final_policy_model_weights")
-    tokenizer.save_pretrained("/home/gaostudent/LeiJia/NLP/myproject/proj3_RS_ORPO/outputs/checkpoints/final_policy_model_weights")
-    print("全流程训练完毕！恭喜您的 RS-ORPO 闭环跑通！")
+    trainer.model.save_pretrained("./outputs/checkpoints/final_policy_model_weights")
+    tokenizer.save_pretrained("./outputs/checkpoints/final_policy_model_weights")
+    print("全流程训练完毕")
 
 if __name__ == "__main__":
     main()

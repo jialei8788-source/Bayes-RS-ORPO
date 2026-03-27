@@ -73,7 +73,7 @@ python evaluate/6_llm_as_a_judge.py
 lm_eval --model hf --model_args pretrained=Qwen/Qwen2.5-0.5B-Instruct,peft=./outputs/checkpoints/final_policy_model_weights,dtype=bfloat16 --tasks mmlu,gsm8k --num_fewshot 5 --batch_size auto
 ```
 
-##🤝 致谢 (Acknowledgments)
+🤝 致谢 (Acknowledgments)
 
 感谢 HuggingFace TRL 团队提供的 ORPO 与 RM 训练框架。
 

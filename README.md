@@ -40,7 +40,8 @@ A memory-efficient LLM alignment pipeline combining Bayesian uncertainty-aware R
 相较于基线模型，对齐后的模型平均生成长度变化控制在 **5%** 以内，有效克服了传统对齐算法中常见的“话痨作弊 (Length Hacking)”现象。
 
 ### 4. 大模型评价 (LLM-judge)
-使用更强参数更多的大模型 (这里调用Qwen-Plus API)对比偏好对齐前后的得分，100生成中，Bayes-OR-ORPO 胜率为11%, baseline 胜率为7% 平局率为22%。 
+使用更强参数更多的大模型 (这里调用Qwen-Plus API)对比偏好对齐前后的得分，100生成中，Bayes-OR-ORPO 胜率为11%, baseline 胜率为7% 平局率为82%。 
+
 ## 🛠️ 管线架构与运行指南 (Pipeline & Usage)
 
 本项目包含从数据挖掘到最终评估的 4 个完整阶段：
